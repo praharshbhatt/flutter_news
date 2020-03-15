@@ -9,6 +9,9 @@ b.	Provides a reminder option on a user specified time
 4. If Background fetch is not enabled, then pull the news every-time user opens the app.
 5. If reminder is set, user is prompted with notification to check news.
 
+
+<a href="flutter_news.apk">Try the APK</a>
+
 # Background fetch
 Flutter News app uses the "background_fetch" plugin to run a background service every 15 minutes (configurable in main.dart) to check if the device is charging.
 If it is, then it checks if the "Background fetch" option is enabled in the settings.
