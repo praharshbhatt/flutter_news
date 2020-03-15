@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flare_flutter/flare_actor.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -6,6 +8,7 @@ import 'package:flutternews/services/news.dart';
 import 'package:flutternews/settings.dart';
 import 'package:flutternews/view_article.dart';
 import 'package:flutternews/widgets/dialogboxes.dart';
+import 'package:path_provider/path_provider.dart';
 
 import 'models/article.dart';
 
@@ -46,12 +49,6 @@ class _MyHomePageState extends State<MyHomePage> {
           )
         ],
       ),
-
-
-
-
-
-
       drawer: Drawer(
         child: ListView(
           padding: EdgeInsets.zero,
@@ -80,18 +77,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
       ),
-
-
-
-
-
-
-
-
-
-
-
-
       body: FutureBuilder(
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           //When Loading
@@ -145,6 +130,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   //Returns the ListView containing the News
   ListView getNewsListView(List<Article> news) {
+    showNewsFetchDateTime();
+
     return ListView.builder(
         itemCount: news.length,
         itemBuilder: (BuildContext context, int index) {
@@ -180,5 +167,12 @@ class _MyHomePageState extends State<MyHomePage> {
             },
           );
         });
+  }
+
+  Future<void> showNewsFetchDateTime() async {
+    final Directory directory = await getApplicationDocumentsDirectory();
+    final File file = File('${directory.path}/news.xml');
+
+    showSnackBar(scaffoldKey: scaffoldKey, text: "Last fetched: " + file.lastModifiedSync().toString());
   }
 }
