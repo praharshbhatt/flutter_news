@@ -1,4 +1,4 @@
-# flutter News
+# Flutter News
 
 A Flutter news application with the following features:
 1. Pulls news from online service: http://rss.news.yahoo.com/rss
